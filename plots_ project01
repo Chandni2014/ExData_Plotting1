@@ -1,0 +1,21 @@
+data2 <- read.table("C:/MYprograms/household_power_consumption.txt", header = TRUE, 
+                   sep = ";" , colClasses = "character", na.strings = "?", nrows =70000)
+
+data2$Date <- as.Date(data2$Date, "%d/%m/%Y")
+
+plottingdata <- subset(data2, Date == "2007/02/01" | Date == "2007/02/02")
+
+
+plottingdata$DateTime <- strptime(paste(plottingdata$Date, plottingdata$Time),
+                                    "%Y-%m-%d  %H:%M:%S")
+
+plottingdata$Global_active_power <- as.numeric(plottingdata$Global_active_power)
+
+
+with(plottingdata, hist(Global_active_power, col = "red", xlab="Gloabl_active_power(kilowatts)",
+                        +                         main = "Global Active Power"))
+
+# copy the plot to the png file
+dev.copy (png, file = "C:/MYprograms/png files/plot01.png", height = 480, width = 480) 
+dev.off()   # close the PNG device
+      
