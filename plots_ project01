@@ -19,3 +19,7 @@ with(plottingdata, hist(Global_active_power, col = "red", xlab="Gloabl_active_po
 dev.copy (png, file = "C:/MYprograms/png files/plot01.png", height = 480, width = 480) 
 dev.off()   # close the PNG device
       
+$ git fetch upstream
+# Fetches any new changes from the original repository
+$ git merge upstream/master
+
